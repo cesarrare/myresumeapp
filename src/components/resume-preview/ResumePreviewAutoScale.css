@@ -1,0 +1,14 @@
+.resume-preview-auto-scale {
+  width: 100%;
+  min-height: 0;
+}
+
+.resume-preview-auto-scale__frame {
+  width: 100%;
+  overflow: hidden;
+}
+
+.resume-preview-auto-scale__content {
+  transform-origin: top center;
+  margin: 0 auto;
+}

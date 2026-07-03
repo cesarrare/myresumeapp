@@ -1,0 +1,172 @@
+.classic-template {
+  font-family: "Playfair Display", Georgia, serif;
+  color: #1a1a1a;
+  line-height: 1.55;
+}
+
+.classic-template .resume {
+  width: 100%;
+  max-width: 920px;
+  min-height: 1100px;
+  background: #ffffff;
+  padding: 2.5rem 2.75rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.classic-template .resume__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 2px solid #1a1a1a;
+  margin-bottom: 1.5rem;
+}
+
+.classic-template .resume__name {
+  margin: 0 0 0.35rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.classic-template .resume__title {
+  margin: 0 0 0.65rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1rem;
+  font-style: italic;
+  color: #444;
+}
+
+.classic-template .resume__contact-line {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.82rem;
+  color: #555;
+}
+
+.classic-template .resume__photo-wrap {
+  flex-shrink: 0;
+}
+
+.classic-template .resume__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 2px solid #1a1a1a;
+}
+
+.classic-template .resume__photo--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.classic-template .resume__section {
+  margin-bottom: 1.5rem;
+}
+
+.classic-template .resume__section-title {
+  margin: 0 0 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 0.35rem;
+}
+
+.classic-template .resume__summary {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.92rem;
+  color: #333;
+}
+
+.classic-template .experience-item {
+  margin-bottom: 1.1rem;
+}
+
+.classic-template .experience-item__top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.classic-template .experience-item__role {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.classic-template .experience-item__period {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.8rem;
+  color: #666;
+  white-space: nowrap;
+}
+
+.classic-template .experience-item__company {
+  margin: 0.15rem 0 0.45rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.classic-template .experience-item__achievements {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.86rem;
+  color: #444;
+}
+
+.classic-template .resume__inline-list,
+.classic-template .skills-list__row {
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.88rem;
+  color: #333;
+}
+
+.classic-template .skills-list__row + .skills-list__row {
+  margin-top: 0.35rem;
+}
+
+.classic-template .project-item {
+  margin-bottom: 0.85rem;
+}
+
+.classic-template .project-item__name {
+  margin: 0 0 0.25rem;
+  font-size: 1rem;
+}
+
+.classic-template .project-item__description {
+  margin: 0 0 0.35rem;
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.86rem;
+  color: #444;
+}
+
+.classic-template .skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.classic-template .skill-tag {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+}

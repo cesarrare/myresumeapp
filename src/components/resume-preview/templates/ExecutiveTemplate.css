@@ -1,0 +1,252 @@
+.executive-template {
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: #1e293b;
+  line-height: 1.55;
+}
+
+.executive-template .resume {
+  width: 100%;
+  max-width: 920px;
+  min-height: 1100px;
+  background: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 24px 48px rgba(15, 23, 42, 0.16);
+  border-radius: 8px;
+}
+
+.executive-template .resume__banner {
+  background: linear-gradient(135deg, #0f2744 0%, #1e3a5f 100%);
+  padding: 2rem 2.25rem;
+  border-bottom: 4px solid #c9a227;
+}
+
+.executive-template .resume__banner-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.executive-template .resume__photo {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #c9a227;
+}
+
+.executive-template .resume__photo--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.executive-template .resume__name {
+  margin: 0 0 0.25rem;
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.executive-template .resume__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #c9a227;
+  letter-spacing: 0.04em;
+}
+
+.executive-template .resume__body {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
+
+.executive-template .resume__aside {
+  background: #f8fafc;
+  padding: 1.75rem 1.5rem;
+  border-right: 1px solid #e2e8f0;
+}
+
+.executive-template .aside-section {
+  margin-bottom: 1.5rem;
+}
+
+.executive-template .aside-section__title {
+  margin: 0 0 0.75rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0f2744;
+}
+
+.executive-template .contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.executive-template .contact-list li {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: #475569;
+  word-break: break-word;
+}
+
+.executive-template .contact-list__icon {
+  flex-shrink: 0;
+  color: #c9a227;
+  font-size: 0.72rem;
+  margin-top: 0.15rem;
+}
+
+.executive-template .bullet-list {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  color: #475569;
+}
+
+.executive-template .expertise-group {
+  margin-bottom: 0.85rem;
+}
+
+.executive-template .expertise-group__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.executive-template .skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.executive-template .skill-tag {
+  font-size: 0.7rem;
+  padding: 0.15rem 0.5rem;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  color: #475569;
+}
+
+.executive-template .skill-tags--gold .skill-tag {
+  background: rgba(201, 162, 39, 0.12);
+  border-color: rgba(201, 162, 39, 0.35);
+  color: #92400e;
+}
+
+.executive-template .resume__main {
+  padding: 1.75rem 2rem;
+}
+
+.executive-template .main-section {
+  margin-bottom: 1.75rem;
+}
+
+.executive-template .main-section__title {
+  margin: 0 0 0.85rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0f2744;
+  padding-bottom: 0.35rem;
+  border-bottom: 2px solid #c9a227;
+}
+
+.executive-template .main-section__text {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #475569;
+}
+
+.executive-template .career-item {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.executive-template .career-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.executive-template .career-item__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.executive-template .career-item__role {
+  margin: 0 0 0.15rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.executive-template .career-item__company {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #c9a227;
+}
+
+.executive-template .career-item__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+  font-size: 0.78rem;
+  color: #64748b;
+  text-align: right;
+}
+
+.executive-template .career-item__achievements {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 0.84rem;
+  color: #475569;
+}
+
+.executive-template .initiatives {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.executive-template .initiative-card {
+  padding: 0.85rem 1rem;
+  background: #f8fafc;
+  border-left: 3px solid #c9a227;
+}
+
+.executive-template .initiative-card__name {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.executive-template .initiative-card__description {
+  margin: 0 0 0.5rem;
+  font-size: 0.84rem;
+  color: #475569;
+}
+
+@media (max-width: 720px) {
+  .executive-template .resume__body {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,19 @@
+.resume-preview {
+  width: 100%;
+}
+
+.resume-preview--scaled {
+  overflow: hidden;
+}
+
+.resume-preview--scaled .modern-template {
+  transform-origin: top center;
+}
+
+.resume-preview--panel .modern-template .resume {
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+}
+
+.resume-preview--modal .modern-template .resume {
+  margin: 0 auto;
+}

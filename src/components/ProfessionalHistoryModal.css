@@ -1,0 +1,185 @@
+.professional-history-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(15, 17, 23, 0.72);
+  backdrop-filter: blur(6px);
+}
+
+.professional-history-modal__content {
+  width: min(560px, 100%);
+  max-height: min(90svh, 720px);
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.professional-history-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.professional-history-modal__title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.professional-history-modal__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.professional-history-modal__close:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.professional-history-modal__body {
+  padding: 20px;
+  display: grid;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.professional-history-modal__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.professional-history-modal__field {
+  display: grid;
+  gap: 6px;
+}
+
+.professional-history-modal__field label,
+.professional-history-modal__achievements-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.professional-history-modal__achievements-label {
+  margin: 0;
+}
+
+.professional-history-modal__field input,
+.professional-history-modal__field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.professional-history-modal__field textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.professional-history-modal__field input:focus,
+.professional-history-modal__field textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.professional-history-modal__achievements {
+  display: grid;
+  gap: 10px;
+}
+
+.professional-history-modal__achievements-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.professional-history-modal__add-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px dashed var(--color-primary);
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.professional-history-modal__add-btn:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+.professional-history-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+.professional-history-modal__btn {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.professional-history-modal__btn:hover {
+  background: var(--color-surface-muted);
+}
+
+.professional-history-modal__btn--primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+}
+
+.professional-history-modal__btn--primary:hover {
+  background: var(--color-primary-hover);
+}
+
+@media (max-width: 560px) {
+  .professional-history-modal__grid {
+    grid-template-columns: 1fr;
+  }
+}

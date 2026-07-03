@@ -1,0 +1,155 @@
+.minimal-template {
+  font-family: "DM Sans", system-ui, sans-serif;
+  color: #111827;
+  line-height: 1.6;
+}
+
+.minimal-template .resume {
+  width: 100%;
+  max-width: 920px;
+  min-height: 1100px;
+  background: #ffffff;
+  padding: 3rem 3.25rem;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  border-radius: 2px;
+}
+
+.minimal-template .resume__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.minimal-template .resume__name {
+  margin: 0;
+  font-size: 2.75rem;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.minimal-template .resume__title {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.minimal-template .resume__photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.minimal-template .resume__photo--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  color: #374151;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.minimal-template .resume__section {
+  margin-bottom: 2rem;
+}
+
+.minimal-template .resume__section-title {
+  margin: 0 0 1rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9ca3af;
+}
+
+.minimal-template .contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+  font-size: 0.88rem;
+  color: #4b5563;
+}
+
+.minimal-template .resume__summary {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #374151;
+  max-width: 62ch;
+}
+
+.minimal-template .entry {
+  margin-bottom: 1.35rem;
+}
+
+.minimal-template .entry__head {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.minimal-template .entry__title {
+  margin: 0;
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+.minimal-template .entry__meta {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.minimal-template .entry__location {
+  margin: 0.2rem 0 0.5rem;
+  font-size: 0.82rem;
+  color: #6b7280;
+}
+
+.minimal-template .entry__list {
+  margin: 0;
+  padding-left: 1rem;
+  font-size: 0.88rem;
+  color: #4b5563;
+}
+
+.minimal-template .entry__description {
+  margin: 0.35rem 0 0.5rem;
+  font-size: 0.88rem;
+  color: #4b5563;
+}
+
+.minimal-template .skills-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.minimal-template .skills-grid__category {
+  margin: 0 0 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.minimal-template .skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.minimal-template .skill-tag {
+  font-size: 0.78rem;
+  color: #374151;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
