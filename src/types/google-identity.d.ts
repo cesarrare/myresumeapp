@@ -20,6 +20,7 @@ declare global {
               shape?: 'rectangular' | 'pill' | 'circle' | 'square'
               width?: number | string
               logo_alignment?: 'left' | 'center'
+              locale?: string
             },
           ) => void
           prompt: (

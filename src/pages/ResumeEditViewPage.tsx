@@ -172,6 +172,26 @@ function GearIcon() {
   )
 }
 
+function SaveIcon() {
+  return (
+    <svg
+      width="19"
+      height="19"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 3h12l2 2v16H5z" />
+      <path d="M8 3v6h8V3" />
+      <path d="M8 21v-8h8v8" />
+    </svg>
+  )
+}
+
 function downloadJson(data: unknown, filename: string) {
   const blob = new Blob([JSON.stringify(data, null, 2)], {
     type: 'application/json',
@@ -201,6 +221,7 @@ export function ResumeEditViewPage() {
   const [isEditFormOpen, setIsEditFormOpen] = useState(true)
   const [isSidePreviewOpen, setIsSidePreviewOpen] = useState(true)
   const [isActionsPanelOpen, setIsActionsPanelOpen] = useState(false)
+  const [isSaveConfirmationOpen, setIsSaveConfirmationOpen] = useState(false)
   const [isPhotoDragging, setIsPhotoDragging] = useState(false)
   const [photoSideLength, setPhotoSideLength] = useState(140)
   const [isSkillCategoryModalOpen, setIsSkillCategoryModalOpen] = useState(false)
@@ -608,7 +629,7 @@ export function ResumeEditViewPage() {
 
   const photoPreviewSrc = form.personalInfo.photo?.trim() || null
 
-  async function handleSave() {
+  function requestSave() {
     if (!userId) {
       return
     }
@@ -624,19 +645,31 @@ export function ResumeEditViewPage() {
     }
 
     setError(null)
+    setIsSaveConfirmationOpen(true)
+  }
+
+  async function handleSave() {
+    if (!userId) {
+      return
+    }
+
+    setIsSaveConfirmationOpen(false)
+    setError(null)
     setSuccess(null)
     setIsSaving(true)
 
     try {
-      if (mode === 'new') {
-        await saveResume(formStateToSaveRequest(form, userId))
-      } else if (editingResumeId) {
+      if (editingResumeId) {
         await updateResume(
           formStateToUpdateRequest(form, userId, editingResumeId)
         )
+      } else {
+        const savedResume = await saveResume(formStateToSaveRequest(form, userId))
+        setEditingResumeId(savedResume.resumeId)
+        navigate(ROUTES.resumeEdit(savedResume.resumeId), { replace: true })
       }
 
-      navigate(ROUTES.resumes, { replace: true })
+      setSuccess('Resume saved successfully.')
     } catch (err) {
       if (err instanceof ApiError && err.status === 401) {
         clearAuthSession()
@@ -732,19 +765,31 @@ export function ResumeEditViewPage() {
             </button>
           ) : null}
         </div>
-        <button
-          type="button"
-          className={`resume-edit__settings-button${
-            isActionsPanelOpen ? ' resume-edit__settings-button--active' : ''
-          }`}
-          onClick={() => setIsActionsPanelOpen((current) => !current)}
-          aria-label={isActionsPanelOpen ? 'Hide actions panel' : 'Show actions panel'}
-          aria-expanded={isActionsPanelOpen}
-          aria-controls="resume-actions-panel"
-          title={isActionsPanelOpen ? 'Hide actions panel' : 'Show actions panel'}
-        >
-          <GearIcon />
-        </button>
+        <div className="resume-edit__toolbar-actions">
+          <button
+            type="button"
+            className="resume-edit__settings-button"
+            onClick={requestSave}
+            disabled={isSaving}
+            aria-label="Save resume"
+            title="Save resume"
+          >
+            <SaveIcon />
+          </button>
+          <button
+            type="button"
+            className={`resume-edit__settings-button${
+              isActionsPanelOpen ? ' resume-edit__settings-button--active' : ''
+            }`}
+            onClick={() => setIsActionsPanelOpen((current) => !current)}
+            aria-label={isActionsPanelOpen ? 'Hide actions panel' : 'Show actions panel'}
+            aria-expanded={isActionsPanelOpen}
+            aria-controls="resume-actions-panel"
+            title={isActionsPanelOpen ? 'Hide actions panel' : 'Show actions panel'}
+          >
+            <GearIcon />
+          </button>
+        </div>
       </header>
 
       <aside
@@ -790,7 +835,7 @@ export function ResumeEditViewPage() {
           <button
             type="button"
             className="resume-edit__button resume-edit__button--primary"
-            onClick={() => void handleSave()}
+            onClick={requestSave}
             disabled={isSaving}
           >
             {isSaving ? 'Saving...' : 'Save'}
@@ -813,7 +858,7 @@ export function ResumeEditViewPage() {
           inert={showEditForm ? undefined : true}
           onSubmit={(event) => {
             event.preventDefault()
-            void handleSave()
+            requestSave()
           }}
         >
           <div className="resume-edit__content">
@@ -1122,6 +1167,41 @@ export function ResumeEditViewPage() {
         onClose={() => setIsFeaturedProjectModalOpen(false)}
         onSave={saveFeaturedProject}
       />
+
+      {isSaveConfirmationOpen ? (
+        <div
+          className="resume-edit__confirm-backdrop"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="save-confirmation-title"
+          onClick={() => setIsSaveConfirmationOpen(false)}
+        >
+          <div
+            className="resume-edit__confirm-modal"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <h2 id="save-confirmation-title">Save changes?</h2>
+            <p>Are you sure you want to save your changes?</p>
+            <div className="resume-edit__confirm-actions">
+              <button
+                type="button"
+                className="resume-edit__button"
+                onClick={() => setIsSaveConfirmationOpen(false)}
+              >
+                No
+              </button>
+              <button
+                type="button"
+                className="resume-edit__button resume-edit__button--primary"
+                onClick={() => void handleSave()}
+                autoFocus
+              >
+                Yes
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }

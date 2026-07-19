@@ -1,6 +1,6 @@
 import type { ResumePreviewData } from '../../../types/resumePreview'
 import { getInitials } from '../utils'
-import { SkillTags, useResumeTemplateData } from './templateHelpers'
+import { LinkifiedText, SkillTags, useResumeTemplateData } from './templateHelpers'
 import './MinimalTemplate.css'
 
 type MinimalTemplateProps = {
@@ -112,7 +112,9 @@ export function MinimalTemplate({ data }: MinimalTemplateProps) {
             <article key={`${project.name}-${index}`} className="entry">
               <h3 className="entry__title">{project.name}</h3>
               {project.description ? (
-                <p className="entry__description">{project.description}</p>
+                <p className="entry__description">
+                  <LinkifiedText text={project.description} />
+                </p>
               ) : null}
               {project.technologies && project.technologies.length > 0 ? (
                 <SkillTags skills={project.technologies} className="skill-tags" />

@@ -2,6 +2,7 @@ import type { ResumePreviewData } from '../../../types/resumePreview'
 import type { TechnicalSkillForm } from '../../../types/resumeForm'
 import { getInitials, renderContactIcon } from '../utils'
 import { useProfilePhoto } from '../useProfilePhoto'
+import { LinkifiedText } from './templateHelpers'
 
 import './ModernTemplate.css'
 
@@ -195,7 +196,9 @@ export function ModernTemplate({ data }: ModernTemplateProps) {
                 <article key={`${project.name}-${index}`} className="project-card">
                   <h3 className="project-card__name">{project.name}</h3>
                   {project.description ? (
-                    <p className="project-card__description">{project.description}</p>
+                    <p className="project-card__description">
+                      <LinkifiedText text={project.description} />
+                    </p>
                   ) : null}
                   {project.technologies && project.technologies.length > 0 ? (
                     <SkillTags skills={project.technologies} variant="main" />
