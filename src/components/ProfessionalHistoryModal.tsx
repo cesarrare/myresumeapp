@@ -10,6 +10,28 @@ type ProfessionalHistoryModalProps = {
   onSave: (value: ProfessionalHistoryForm) => void
 }
 
+function TrashIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 6h18" />
+      <path d="M8 6V4h8v2" />
+      <path d="M19 6l-1 14H6L5 6" />
+      <path d="M10 11v5" />
+      <path d="M14 11v5" />
+    </svg>
+  )
+}
+
 export function ProfessionalHistoryModal({
   isOpen,
   initialValue,
@@ -149,7 +171,7 @@ export function ProfessionalHistoryModal({
             {draft.achievements.map((achievement, achievementIndex) => (
               <div
                 key={`achievement-${achievementIndex}`}
-                className="professional-history-modal__field"
+                className="professional-history-modal__achievement-row"
               >
                 <textarea
                   value={achievement}
@@ -163,6 +185,22 @@ export function ProfessionalHistoryModal({
                   }
                   placeholder="Describe an achievement"
                 />
+                <button
+                  type="button"
+                  className="professional-history-modal__delete-btn"
+                  onClick={() =>
+                    setDraft((current) => ({
+                      ...current,
+                      achievements: current.achievements.filter(
+                        (_, index) => index !== achievementIndex
+                      ),
+                    }))
+                  }
+                  aria-label={`Remove achievement ${achievementIndex + 1}`}
+                  title="Remove achievement"
+                >
+                  <TrashIcon />
+                </button>
               </div>
             ))}
           </div>

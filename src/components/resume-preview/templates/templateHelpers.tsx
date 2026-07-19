@@ -61,3 +61,40 @@ export function SkillTags({
     </div>
   )
 }
+
+const LINK_PATTERN = /(https?:\/\/[^\s<]+|www\.[^\s<]+)/gi
+const TRAILING_PUNCTUATION_PATTERN = /[),.;!?]+$/
+
+export function LinkifiedText({ text }: { text: string }) {
+  const parts = text.split(LINK_PATTERN)
+
+  return (
+    <>
+      {parts.map((part, index) => {
+        if (!part.match(/^https?:\/\/|^www\./i)) {
+          return part
+        }
+
+        const trailingPunctuation = part.match(TRAILING_PUNCTUATION_PATTERN)?.[0] ?? ''
+        const linkText = trailingPunctuation
+          ? part.slice(0, -trailingPunctuation.length)
+          : part
+        const href = linkText.startsWith('www.') ? `https://${linkText}` : linkText
+
+        return (
+          <span key={`${linkText}-${index}`}>
+            <a
+              className="resume-link"
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {linkText}
+            </a>
+            {trailingPunctuation}
+          </span>
+        )
+      })}
+    </>
+  )
+}

@@ -80,6 +80,7 @@ export function GoogleSignInButton({
         shape: 'rectangular',
         width,
         logo_alignment: 'left',
+        locale: 'en',
       })
       lastWidth = width
       setReady(true)

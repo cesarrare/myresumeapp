@@ -11,6 +11,28 @@ type TechnicalSkillCategoryModalProps = {
   onSave: (value: SkillCategoryDraft) => void
 }
 
+function TrashIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 6h18" />
+      <path d="M8 6V4h8v2" />
+      <path d="M19 6l-1 14H6L5 6" />
+      <path d="M10 11v5" />
+      <path d="M14 11v5" />
+    </svg>
+  )
+}
+
 export function TechnicalSkillCategoryModal({
   isOpen,
   initialValue,
@@ -97,6 +119,13 @@ export function TechnicalSkillCategoryModal({
     }))
   }
 
+  function removeSkill(index: number) {
+    setDraft((current) => ({
+      ...current,
+      skills: current.skills.filter((_, i) => i !== index),
+    }))
+  }
+
   return (
     <div
       className="skill-category-modal"
@@ -174,18 +203,26 @@ export function TechnicalSkillCategoryModal({
                   }
                 />
 
-                {index === draft.skills.length - 1 && (
-                  <button
-                    type="button"
-                    className="skill-category-modal__add-btn"
-                    onClick={addSkill}
-                    aria-label="Add skill"
-                  >
-                    +
-                  </button>
-                )}
+                <button
+                  type="button"
+                  className="skill-category-modal__delete-btn"
+                  onClick={() => removeSkill(index)}
+                  aria-label={`Remove ${skill.skillName.trim() || `skill ${index + 1}`}`}
+                  title="Remove skill"
+                >
+                  <TrashIcon />
+                </button>
               </div>
             ))}
+
+            <button
+              type="button"
+              className="skill-category-modal__add-btn"
+              onClick={addSkill}
+            >
+              <span aria-hidden="true">+</span>
+              Add skill
+            </button>
           </div>
         </div>
 

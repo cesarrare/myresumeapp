@@ -2,6 +2,14 @@
   width: 100%;
 }
 
+.resume-preview .resume-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.12em;
+  overflow-wrap: anywhere;
+}
+
 .resume-preview--scaled {
   overflow: hidden;
 }
