@@ -10,8 +10,13 @@ COPY package*.json ./
 
 RUN npm ci
 
-# Copiar el resto del proyecto (.env incluido)
+# Copiar el resto del proyecto
 COPY . .
+
+# Injected at image build time from CI (GitHub secret GOOGLE_CLIENT_ID).
+# Overrides any VITE_GOOGLE_CLIENT_ID from .env.production.
+ARG VITE_GOOGLE_CLIENT_ID
+ENV VITE_GOOGLE_CLIENT_ID=$VITE_GOOGLE_CLIENT_ID
 
 # Generar el build de producción
 RUN npm run build

@@ -10,6 +10,28 @@ type FeaturedProjectModalProps = {
   onSave: (value: FeaturedProjectForm) => void
 }
 
+function TrashIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M3 6h18" />
+      <path d="M8 6V4h8v2" />
+      <path d="M19 6l-1 14H6L5 6" />
+      <path d="M10 11v5" />
+      <path d="M14 11v5" />
+    </svg>
+  )
+}
+
 export function FeaturedProjectModal({
   isOpen,
   initialValue,
@@ -127,19 +149,35 @@ export function FeaturedProjectModal({
                 />
                 <button
                   type="button"
-                  className="featured-project-modal__add-btn"
-                  aria-label="Add technology"
+                  className="featured-project-modal__delete-btn"
+                  aria-label={`Remove ${technology.trim() || `technology ${technologyIndex + 1}`}`}
+                  title="Remove technology"
                   onClick={() =>
                     setDraft((current) => ({
                       ...current,
-                      technologies: [...current.technologies, ''],
+                      technologies: current.technologies.filter(
+                        (_, index) => index !== technologyIndex
+                      ),
                     }))
                   }
                 >
-                  +
+                  <TrashIcon />
                 </button>
               </div>
             ))}
+            <button
+              type="button"
+              className="featured-project-modal__add-btn"
+              onClick={() =>
+                setDraft((current) => ({
+                  ...current,
+                  technologies: [...current.technologies, ''],
+                }))
+              }
+            >
+              <span aria-hidden="true">+</span>
+              Add technology
+            </button>
           </div>
         </div>
 

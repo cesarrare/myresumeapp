@@ -1,10 +1,11 @@
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { ApiError } from '../api/client'
+import { GoogleSignInButton } from '../components/GoogleSignInButton'
 import { useTheme } from '../context/theme'
 import { useRedirectIfAuthenticated } from '../hooks'
 import { ROUTES } from '../router'
-import { login } from '../services/authService'
+import { login, loginWithGoogle } from '../services/authService'
 import './LoginPage.css'
 
 export function LoginPage() {
@@ -16,6 +17,19 @@ export function LoginPage() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState<string | null>(null)
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  function mapAuthError(err: unknown, fallback: string) {
+    if (err instanceof ApiError) {
+      if (err.status === 401) {
+        return err.message || 'Invalid credentials.'
+      }
+      return err.message || fallback
+    }
+    if (err instanceof Error) {
+      return err.message
+    }
+    return 'Something went wrong. Please try again.'
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -30,17 +44,21 @@ export function LoginPage() {
 
       navigate(ROUTES.resumes, { replace: true })
     } catch (err) {
-      if (err instanceof ApiError) {
-        if (err.status === 401) {
-          setError(err.message || 'Invalid email or password.')
-        } else {
-          setError(err.message || 'Unable to sign in. Please try again.')
-        }
-      } else if (err instanceof Error) {
-        setError(err.message)
-      } else {
-        setError('Something went wrong. Please try again.')
-      }
+      setError(mapAuthError(err, 'Unable to sign in. Please try again.'))
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  async function handleGoogleCredential(idToken: string) {
+    setError(null)
+    setIsSubmitting(true)
+
+    try {
+      await loginWithGoogle(idToken)
+      navigate(ROUTES.resumes, { replace: true })
+    } catch (err) {
+      setError(mapAuthError(err, 'Unable to sign in with Google. Please try again.'))
     } finally {
       setIsSubmitting(false)
     }
@@ -113,14 +131,11 @@ export function LoginPage() {
 
           <div className="login-divider">or</div>
 
-          <button
-            type="button"
-            className="login-button login-button--google"
-            disabled
-            title="Google sign-in coming soon"
-          >
-            Continue with Google
-          </button>
+          <GoogleSignInButton
+            disabled={isSubmitting}
+            onCredential={handleGoogleCredential}
+            onError={setError}
+          />
         </form>
 
         <p className="login-footer">

@@ -1,6 +1,6 @@
 import type { ResumePreviewData } from '../../../types/resumePreview'
 import { getInitials } from '../utils'
-import { SkillTags, useResumeTemplateData } from './templateHelpers'
+import { LinkifiedText, SkillTags, useResumeTemplateData } from './templateHelpers'
 import './ClassicTemplate.css'
 
 type ClassicTemplateProps = {
@@ -104,7 +104,9 @@ export function ClassicTemplate({ data }: ClassicTemplateProps) {
               <article key={`${project.name}-${index}`} className="project-item">
                 <h3 className="project-item__name">{project.name}</h3>
                 {project.description ? (
-                  <p className="project-item__description">{project.description}</p>
+                  <p className="project-item__description">
+                    <LinkifiedText text={project.description} />
+                  </p>
                 ) : null}
                 {project.technologies && project.technologies.length > 0 ? (
                   <SkillTags skills={project.technologies} className="skill-tags skill-tags--inline" />

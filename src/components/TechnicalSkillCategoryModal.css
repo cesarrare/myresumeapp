@@ -103,7 +103,7 @@
 
 .skill-category-modal__skill-row {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) 90px 36px;
   gap: 8px;
   align-items: center;
 }
@@ -112,20 +112,53 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  justify-self: start;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 12px;
   border: 1px dashed var(--color-primary);
   border-radius: var(--radius-sm);
   background: var(--color-primary-soft);
   color: var(--color-primary);
-  font-size: 1.25rem;
-  line-height: 1;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
   cursor: pointer;
+}
+
+.skill-category-modal__add-btn span {
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 .skill-category-modal__add-btn:hover {
   background: var(--color-primary);
   color: #ffffff;
+}
+
+.skill-category-modal__delete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-error);
+  cursor: pointer;
+}
+
+.skill-category-modal__delete-btn:hover {
+  border-color: var(--color-error);
+  background: var(--color-error-soft);
+}
+
+@media (max-width: 520px) {
+  .skill-category-modal__skill-row {
+    grid-template-columns: minmax(0, 1fr) 72px 36px;
+  }
 }
 
 .skill-category-modal__footer {

@@ -10,6 +10,10 @@ export interface RegisterRequest {
   lastName: string
 }
 
+export interface GoogleAuthRequest {
+  idToken: string
+}
+
 export interface LoginResponse {
   userId: number
   firstName: string
