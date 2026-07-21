@@ -4,6 +4,7 @@
 #   DOCKERHUB_USERNAME  - Docker Hub username only (e.g. cesarrare), not email
 #   DOCKERHUB_TOKEN     - Docker Hub access token (Account Settings → Security)
 #                         Paste without quotes or trailing spaces/newlines
+#   GOOGLE_CLIENT_ID    - Google OAuth Web client ID (injected as VITE_GOOGLE_CLIENT_ID)
 #
 # Triggers:
 #   - Pull Request → main: build only (no Docker publish)
@@ -42,7 +43,15 @@ jobs:
         run: npm ci
 
       - name: Compile production build
-        run: npm run build
+        env:
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+        run: |
+          if [ -z "$VITE_GOOGLE_CLIENT_ID" ]; then
+            echo "GOOGLE_CLIENT_ID secret is missing."
+            echo "Configure repository secret: GOOGLE_CLIENT_ID"
+            exit 1
+          fi
+          npm run build
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
@@ -85,6 +94,8 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          build-args: |
+            VITE_GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
