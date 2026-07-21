@@ -1,5 +1,5 @@
 export const API_CONFIG = {
-  baseUrl: import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:8080',
+  baseUrl: import.meta.env.VITE_API_BASE_URL ?? 'http://myresumeapi.k8s.sftcloud.com.mx',
   timeoutMs: 15_000,
   googleClientId: import.meta.env.VITE_GOOGLE_CLIENT_ID ?? '',
 } as const
